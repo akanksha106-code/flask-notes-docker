@@ -1,18 +1,25 @@
 
+
 # Flask Notes App with Docker & CI/CD
 
-A simple **Flask-based Notes web application** containerized with Docker and automated with GitHub Actions CI/CD pipeline. This project demonstrates modern DevOps practices, including Docker builds, image pushes to Docker Hub, automated workflow triggers, and deployment on an **AWS EC2 instance**.
+A **Flask-based Notes web application**, fully containerized with Docker and automated with **GitHub Actions CI/CD pipeline**. This project demonstrates modern DevOps practices, including:
+
+* Building and pushing Docker images to Docker Hub
+* Automated CI/CD workflow on GitHub
+* Deployment on an **AWS EC2 instance**
+
+It’s designed to be easy to deploy, extend, and scale.
 
 ---
 
 ## **Features**
 
-* Create, read, update, and delete notes.
-* RESTful API endpoints for note management.
-* Fully containerized with Docker.
-* Automated CI/CD using GitHub Actions.
-* Deployed and running on **AWS EC2**.
-* Easy to scale and extend.
+* Create, read, update, and delete notes
+* RESTful API endpoints for note management
+* Fully containerized with Docker for consistent environments
+* Automated CI/CD using GitHub Actions
+* Deployed and running on **AWS EC2**
+* Easy to scale and maintain
 
 ---
 
@@ -40,8 +47,8 @@ A simple **Flask-based Notes web application** containerized with Docker and aut
 ### **Clone the Repository**
 
 ```bash
-git clone https://github.com/akanksha106-code/flask-notes-docker.git
-cd flask-notes-docker
+git clone https://github.com/akankshatech/flask-notes-app.git
+cd flask-notes-app
 ```
 
 ---
@@ -64,12 +71,12 @@ docker run -p 5000:5000 flask-notes-app
 
 ---
 
-### **EC2 Deployment**
+### **Deploy on AWS EC2**
 
-The app is deployed on an **AWS EC2 instance**:
+The app can be deployed on an **AWS EC2 instance**:
 
-1. Launch an EC2 instance (Amazon Linux 2023 recommended).
-2. SSH into your instance and install Docker:
+1. Launch an EC2 instance (Amazon Linux 2023 recommended)
+2. SSH into the instance and install Docker:
 
 ```bash
 sudo dnf update -y
@@ -80,70 +87,55 @@ sudo service docker start
 3. Pull Docker image from Docker Hub:
 
 ```bash
-docker pull akanksha106/flask-notes-docker:latest
+docker pull akankshatech/flask-notes-app:latest
 ```
 
 4. Run the container:
 
 ```bash
-docker run -d -p 80:5000 akanksha106/flask-notes-docker
+docker run -d -p 80:5000 akankshatech/flask-notes-app
 ```
 
-5. Access your app via the EC2 public IP:
+5. Access the app via EC2 public IP:
    `http://<your-ec2-public-ip>`
+
+> **Tip:** Ensure your EC2 security group allows HTTP traffic on port 80.
 
 ---
 
 ### **GitHub Actions CI/CD**
 
-Configured to automatically:
+The project is configured to automatically:
 
-1. Build the Docker image.
-2. Push it to **Docker Hub** whenever code is merged into `main`.
-3. Optional: trigger EC2 deployment using SSH or AWS CLI (can be extended).
+1. Build the Docker image
+2. Push the image to **Docker Hub** when code is merged into `main`
+3. Optionally, deploy to EC2 using SSH or AWS CLI
 
-> **GitHub Actions secrets required:**
+> **Required GitHub Secrets:**
 >
-> * `DOCKERHUB_USERNAME` → Your Docker Hub username
-> * `DOCKERHUB_TOKEN` → Personal access token with read/write permission
-> * (Optional) `EC2_SSH_KEY` → Your private key for automated EC2 deployment
+> * `DOCKERHUB_USERNAME` → Docker Hub username
+> * `DOCKERHUB_TOKEN` → Docker Hub personal access token with write permission
+> * (Optional) `EC2_SSH_KEY` → Private key for EC2 deployment
 
 ---
 
 ### **Project Structure**
 
 ```
-flask-notes-docker/
+flask-notes-app/
 │
 ├── app.py              # Main Flask application
 ├── Dockerfile          # Docker configuration
 ├── requirements.txt    # Python dependencies
 ├── .github/
 │   └── workflows/
-│       └── docker.yml  # CI/CD workflow for GitHub Actions
+│       └── docker.yml  # CI/CD workflow
 └── README.md
 ```
 
 ---
 
-### **Statistics / Metrics**
-
-| Metric           | Status                                                                                                       |
-| ---------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Build Status** | ![Build Status](https://github.com/akanksha106-code/flask-notes-docker/actions/workflows/main.yml/badge.svg) |
-| **Docker Pulls** | ![Docker Pulls](https://img.shields.io/docker/pulls/akanksha106/flask-notes-docker)                          |
-| **Commits**      | ![Commits](https://img.shields.io/github/commit-activity/m/akanksha106-code/flask-notes-docker)              |
-| **GitHub Stars** | ![Stars](https://img.shields.io/github/stars/akanksha106-code/flask-notes-docker)                            |
-
----
-
-
-### **License**
-
-This project is **MIT licensed**.
 
 
 
-
-Do you want me to do that too?
 
